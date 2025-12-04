@@ -189,6 +189,7 @@
 \newcommand{\Z}{\mathbb{Z}}
 \newcommand{\Q}{\mathbb{Q}}
 \newcommand{\set}[1]{\left\{\,#1\,\right\}}
+\renewcommand{\vec}[1]{\mathbf{#1}}
 \newcommand{\diam}{\operatorname{diam}}
 
 
@@ -1004,7 +1005,31 @@ Carathéodory也证明了这个条件的合理性, 即这个条件的的确确�
 在介绍积分理论之前, 我们需要一些前置概念和结论. 在分析学中, 空间就是最重要的研究对象, 也是一切的基础.
 本章中就重点研究分析学中常见的空间.
 
+我们不会对于每个空间进行特别深入的研究, 若感兴趣可以深入研究对应的课题.
+
 \subsection{线性空间}
+
+线性空间是一个代数的概念, 其描述的是一个具备数乘概念的Abel群.
+
+\begin{definition}[线性空间]
+    {\bf 线性空间} (vector space)是域作用在Abel群上构成的代数结构, 具体地说, 对于集合$V$和域$\mathbb K$, 定义加法
+    \[+:V\times V\to V\]
+    和数乘作用
+    \[\cdot:\mathbb K\times V\to V\]
+    并且对任意$\mathbf{a},\mathbf{b},\mathbf{c}\in V;\, k,l\in\mathbb{K}$满足:
+    \begin{enumerate}
+        \item[G1] (加法结合律) $(\vec a+\vec b)+\vec c=\vec a+(\vec b+\vec c)$.
+        \item[G2] (零元) $\exists!\vec 0\in V,\vec 0+\vec a=\vec a+\vec 0=\vec a$.
+        \item[G3] (负元) $\forall\vec a\in V,\exists!-\vec a\in V,\vec a+(-\vec a)=(-\vec a)+\vec a=\vec 0$.
+        \item[Ab] (加法交换律) $\vec a+\vec b=\vec b+\vec a$.
+        \item[D1] (数乘对向量加法的分配律) $k\cdot(\vec a+\vec b)=k\cdot\vec a+k\cdot\vec b$.
+        \item[D2] (数乘对域加法的分配律) $(k+l)\cdot\vec a=k\cdot\vec a+l\cdot\vec a$.
+        \item[A1] (乘法作用) $(k\cdot l)\cdot\vec a=k\cdot(l\cdot\vec a)$.
+        \item[A2] (单位元作用) $\exists!1\in\mathbb K, 1\cdot\vec a=\vec a$.
+    \end{enumerate}
+    就称$(V,+,\cdot,\mathbb K)$是一个{\bf 线性空间} (vector space).
+\end{definition}
+
 % \subsection{拓扑空间}
 % \subsection{连续映射}
 
