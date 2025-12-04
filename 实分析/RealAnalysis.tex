@@ -1,0 +1,1014 @@
+\documentclass{ctexart}
+\usepackage{pgfplots}
+\usepackage{tikz}
+\usepackage{silence}
+\usepackage[most]{tcolorbox}
+\WarningFilter{hyperref}{}
+\WarningFilter{latexfont}{}
+\usepackage{tikz-cd}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{mathrsfs}
+\usepackage{titling}
+\usepackage{pgfplots}
+\usepackage[hidelinks]{hyperref}
+\usepackage{xcolor}
+\usepackage{ulem}
+\usepackage[a4paper, left=2.5cm, right=2.5cm, top=2.5cm, bottom=2cm]{geometry}
+\setlength{\droptitle}{-3cm}
+\pgfplotsset{compat=1.18}
+\pagestyle{empty}
+\theoremstyle{definition}
+\renewcommand{\contentsname}{}
+
+%chktex-file 37
+%chktex-file 25
+%chktex-file 18
+%chktex-file 17
+%chktex-file 11
+%chktex-file 9
+%chktex-file 3
+
+\renewcommand\proofname{\indent Pf.}
+
+\newtheorem{remark}{注.}
+
+\newenvironment{comm}[1][]{
+    \begin{tcolorbox}[
+        enhanced,
+        breakable,
+        colframe=black,
+        coltitle=black,
+        colback=white,
+        colbacktitle=white,
+        boxrule=1pt,
+        titlerule=-1pt,
+        title={\bf #1},
+    ]
+
+}{
+    \end{tcolorbox}
+}
+
+\newenvironment{cirno}[1][]{
+    \begin{tcolorbox}[
+        enhanced,
+        breakable,
+        colframe=cyan,
+        coltitle=cyan,
+        colback=white,
+        colbacktitle=white,
+        boxrule=1pt,
+        titlerule=-1pt,
+        title={\bf #1},
+        overlay unbroken and last={
+            \node[anchor=north east, xshift=0, yshift=0] at (frame.north east) {
+                \includegraphics[width=1.2cm]{resources/琪露诺.png}
+            };
+        },
+    ]
+
+}{
+    \end{tcolorbox}
+}
+
+\newenvironment{reimu}[1][]{
+    \begin{tcolorbox}[
+        enhanced,
+        breakable,
+        colframe=red,
+        coltitle=red,
+        colback=white,
+        colbacktitle=white,
+        boxrule=1pt,
+        titlerule=-1pt,
+        title={\bf #1},
+        overlay unbroken and last={
+            \node[anchor=north east, xshift=0, yshift=0] at (frame.north east) {
+                \includegraphics[width=1.2cm]{resources/博丽灵梦.png}
+            };
+        },
+    ]
+
+}{
+    \end{tcolorbox}
+}
+
+\newenvironment{marisa}[1][]{
+    \begin{tcolorbox}[
+        enhanced,
+        breakable,
+        colframe=white,
+        borderline={0.5mm}{0mm}{yellow!50!orange,dashed},
+        coltitle=yellow!50!orange,
+        colback=white,
+        colbacktitle=white,
+        boxrule=1pt,
+        titlerule=-1pt,
+        title={\bf #1},
+        overlay unbroken and last={
+            \node[anchor=north east, xshift=0, yshift=0] at (frame.north east) {
+                \includegraphics[width=1.2cm]{resources/雾雨魔理沙.png}
+            };
+        },
+    ]
+
+}{
+    \end{tcolorbox}
+}
+
+\newcounter{theorem}[section]%=====定理=====
+\renewcommand{\thetheorem}{{定理 }\thesection.\arabic{theorem}}
+\newenvironment{theorem}[1][]{
+    \refstepcounter{theorem}
+    \begin{cirno}[\bf \thetheorem. #1]
+    
+}{
+    \end{cirno}
+}
+%=====引理=====
+\newcommand{\thelemma}{{引理 }\thesection.\arabic{theorem}}
+\newenvironment{lemma}[1][]{
+    \refstepcounter{theorem}
+    \begin{cirno}[\bf \thelemma. #1]
+    
+}{
+    \end{cirno}
+}
+%=====推论=====
+\newcommand{\thecorollary}{{推论 }\thesection.\arabic{theorem}}
+\newenvironment{corollary}[1][]{
+    \refstepcounter{theorem}
+    \begin{cirno}[\bf \thecorollary. #1]
+    
+}{
+    \end{cirno}
+}
+%=====命题=====
+\newcommand{\theproposition}{{命题 }\thesection.\arabic{theorem}}
+\newenvironment{proposition}[1][]{
+    \refstepcounter{theorem}
+    \begin{cirno}[\bf \theproposition. #1]
+    
+}{
+    \end{cirno}
+}
+
+\newcounter{definition}[section]%=====定义=====
+\renewcommand{\thedefinition}{{定义 }\thesection.\arabic{definition}}
+\newenvironment{definition}[1][]{
+    \refstepcounter{definition}
+    \begin{reimu}[\bf \thedefinition. #1]
+    
+}{
+    \end{reimu}
+}
+\newcounter{example}[section]%=====例题=====
+\renewcommand{\theexample}{{例 }\thesection.\arabic{example}}
+\newenvironment{example}[1][]{
+    \refstepcounter{example}
+    \begin{marisa}[\bf \theexample. #1]
+    
+}{
+    \end{marisa}
+}
+
+\newenvironment{solution}{
+    \begin{proof}[Sol.]}{\end{proof}}
+
+%=====标题=====
+\title{实分析}
+\author{xiaou0}
+
+%====数学宏=====
+\renewcommand{\O}{\varnothing}
+\renewcommand{\L}{\mathscr{L}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\set}[1]{\left\{\,#1\,\right\}}
+\newcommand{\diam}{\operatorname{diam}}
+
+
+\begin{document} %=====文档开始=====
+\maketitle
+\tableofcontents
+
+\newpage
+
+\hspace{1em}
+\begin{figure}[htbp]
+    \centering
+    \includegraphics{resources/cirno_title.jpg}
+\end{figure}
+\begin{center}
+    {\bf 特别鸣谢}
+    
+    琪露诺|幻想乡大学纯粹与应用数学博士
+
+    https://www.pixiv.net/artworks/90486424
+\end{center}
+\hspace{5cm}
+\begin{center}
+    {\bf 作者的话}
+
+    Ciallo～ 我是xiaou0, 一名爱好数学的普通高中生.
+
+    该材料仅供交流学习, {\bf 仅供交流学习!} 贩卖兜售的话xiaou0会哭的TAT
+
+    我个人的数学写作风格可能尚为稚嫩. 如果你正在学习数学, 希望这份材料能够帮助到你!
+\end{center}
+\newpage
+
+\section{集合}
+
+本章中, 我们将介绍实分析所需要的集合和拓扑的前置知识 (当然过于基本的就不介绍了:P).
+
+\subsection{子集族}
+\begin{definition}[子集族]
+    对于集合$S$, 若集合$\mathcal T$中的任一元素都是$S$中的子集, 则称$\mathcal T$是$S$上的{\bf 子集族} (collection of subsets).
+\end{definition}
+
+子集族是分析学中最重要的刻画之一, 诸多内容例如拓扑, $\sigma$-代数都是子集族的构造.
+
+例如, $S$的幂集$\wp(S)$就是$S$的一个子集族. 事实上, 幂集是最大的子集族: 显然它包含了$S$全体的子集, 任何$S$的子集族都是$\wp(S)$的子集.
+
+\subsection{集合的序关系}
+\begin{definition}[集合的序关系]
+    对于任给的集族$\mathcal C$, 我们可以定义一个偏序关系. 对于$A,B\in\mathcal C$, 我们定义
+    \[A\preceq B\iff A\subset B\]
+    显然构成偏序关系. 为了记号方便, 也为了不引起歧义, 我们用$A\subset B$来代指$A\preceq B$.
+\end{definition}
+\begin{remark}
+    这本书内我们用$\subset$表示子集, 用$\subsetneq$表示真子集.
+\end{remark}
+
+由定义, 下面的定理是显然的.
+
+\begin{theorem}
+    任何集合族都是偏序集.
+\end{theorem}
+
+不失一般性, 下面我们对于集合族的讨论, 总是考虑将其作为某个全集$\Omega$的子集族.
+
+回顾上确界的定义, 在偏序集中, {\bf 上界} (upper bound)的定义为对于集合$A$中的任意元素$a$, 都有$b\ge a$的元素$b$就成为$A$的一个上界.
+而{\bf 上确界} (supremum)$c$是满足对任何$A$的上界$b$, 都有$b\ge c$的那个上界$c$ (称之为上确界的{\bf 泛性质} (universal property)). 对偶地我们可以定义{\bf 下界} (lower bound)和{\bf 下确界} (infimum).
+
+\begin{theorem}
+    一个偏序集的上确界存在即唯一.
+\end{theorem}
+\begin{proof}
+    设$m_1,m_2$都是$A$的上确界, 那么它们肯定是上界, 由上确界的泛性质可得$m_1\le m_2$和$m_2\le m_1$, 由反对称性可知$m_1=m_2$. 
+\end{proof}
+
+从而我们可以给出如下定义:
+
+\begin{definition}[上界集]
+    设$\mathcal C$是$X$的子集族, 则$\mathcal C$对于集合的序关系的上确界
+    称为该子集族的{\bf 上界集} (supremum set).
+\end{definition}
+
+我们容易猜想结论:
+
+\begin{theorem}
+    设$\mathcal C$是对任意并封闭的集族, 则$\mathcal A\subset\mathcal C$的上界集就是它们的并:
+    \[\sup{\mathcal A}=\bigcup_{A\in\mathcal A}{A}\]
+\end{theorem}
+\begin{proof}
+    显然
+    \[\bigcup_{A\in\mathcal A}{A}\]
+    是$\mathcal A$的一个上界, 假若$B$是$\mathcal A$的一个上界, 那么对任意$A\in\mathcal A$,
+    都有$A\subset B$, 从而$\bigcup_{A\in\mathcal A}{A}\subset B$.
+\end{proof}
+\begin{corollary}
+    设$\mathcal C$是对有限并封闭的集族, 则$A_1,A_2,\ldots,A_n\in\mathcal C$的上界集就是它们的并:
+    \[\sup\set{A_1,A_2,\ldots,A_n}=\bigcup_{k=1}^n{A_k}\]
+\end{corollary}
+\begin{corollary}
+    设$\mathcal C$是对可数并封闭的集族, 则任意集列$\set{A_n}_{n=1}^\infty\subset\mathcal C$的上界集就是它们的并:
+    \[\sup\set{A_n}_{n=1}^\infty=\bigcup_{k=1}^\infty{A_k}\]
+\end{corollary}
+
+对偶地, 我们可以定义下界集, 并且指出一个集族的下界集就是它们的交.
+
+\subsection{集合列}
+
+我们重点研究的对象是集合列 (特别是某个集合的子集列), 以及它们的极限.
+\begin{definition}[集列]
+    正整数集到某个集合族$\mathcal C$的映射$\Z_+\to\mathcal C$, 就称作一个{\bf 集列}.
+\end{definition}
+
+对应于实数列中的极限, 我们可以定义集列的上下极限:
+
+\begin{definition}[集列的上极限]
+    对于一列集合$\set{A_n}_{n=1}^\infty$, 其{\bf 上极限} (limit superior)定义为
+    \[\limsup_{n\to\infty}{A_n}:=\inf_{n\ge1} {\sup_{k\ge n}{A_k}}=\bigcap_{n=1}^\infty{\bigcup_{k=n}^\infty{A_k}}\]
+\end{definition}
+\begin{definition}[集列的下极限]
+    对于一列集合$\set{A_n}_{n=1}^\infty$, 其{\bf 下极限} (limit inferior)定义为
+    \[\liminf_{n\to\infty}{A_n}:=\sup_{n\ge1} {\inf_{k\ge n}{A_k}}=\bigcup_{n=1}^\infty{\bigcap_{k=n}^\infty{A_k}}\]
+\end{definition}
+
+就像实数列极限里那样, 我们也可以借助上下极限定义一个集合列的极限:
+
+\begin{definition}[集列的极限]
+    对于一列集合$\set{A_n}_{n=1}^\infty$, 若其上下极限相等, 就称该集合列是{\bf 收敛} (converge)的, 并令
+    \[\lim_{n\to\infty}{A_n}=\limsup_{n\to\infty}=\liminf_{n\to\infty}=
+    \bigcap_{n=1}^\infty{\bigcup_{k=n}^\infty{A_k}}=\bigcup_{n=1}^\infty{\bigcap_{k=n}^\infty{A_k}}\]
+    称之为该集合列的{\bf 极限} (limit).
+\end{definition}
+
+我们再来给出两类尤其重要的集列:
+
+\begin{definition}[单调集列]
+    对于集合列$\set{A_n}_{n=1}^\infty$, 若满足
+    \[A_1\subset A_2\subset\cdots\subset A_n\subset\cdots\]
+    则称集合列$\set{A_n}_{n=1}^\infty$是{\bf 单调上升}的, 若
+    \[A_1\supset A_2\supset\cdots\supset A_n\supset\cdots\]
+    则称集合列$\set{A_n}_{n=1}^\infty$是{\bf 单调下降}的, 若满足任意一者,
+    就称该列是{\bf 单调} (monotonic)的.
+\end{definition}
+
+类比实数列的单调有界定理, 我们有
+
+\begin{theorem}\label{thm:单调集合列的极限}
+    若$\set{A_n}_{n=1}^\infty$是单调的, 那么其必然是收敛的. 
+    若$\set{A_n}_{n=1}^\infty$是单调上升的, 则
+    \[\lim_{n\to\infty}{A_n}=\bigcup_{k=1}^\infty{A_n}\]
+    若$\set{A_n}_{n=1}^\infty$是单调下降的, 则
+    \[\lim_{n\to\infty}{A_n}=\bigcap_{k=1}^\infty{A_n}\]
+\end{theorem}
+\begin{proof}
+    假设$\set{A_n}_{n=1}^\infty$是单调上升的, 则
+    \[\limsup_{n\to\infty}{A_n}=\bigcap_{n=1}^\infty{\bigcup_{k=n}^\infty{A_k}}\]
+    由于$\set{A_n}_{n=1}^\infty$单调上升, 从而
+    \[\bigcup_{k=n}^\infty{A_k}\]
+    对任意$n$都相同, 因此
+    \[\bigcap_{n=1}^\infty{\bigcup_{k=n}^\infty{A_k}}=\bigcup_{k=1}^\infty{A_k}\]
+    同样地
+    \[\liminf_{n\to\infty}{A_n}=\bigcup_{n=1}^\infty{\bigcap_{k=n}^\infty{A_k}}\]
+    由于$\set{A_n}_{n=1}^\infty$单调上升, 从而
+    \[\bigcap_{k=n}^\infty{A_k}=A_n\]
+    于是
+    \[\limsup_{n\to\infty}{A_n}=\liminf_{n\to\infty}{A_n}=\bigcup_{k=1}^\infty{A_k}\]
+    类似地可以证明单调下降的情况.
+\end{proof}
+\begin{definition}[单调类]
+    若集合$X$的子集族$\mathcal M$满足对任意单调的集列$\set{A_n}_{n=1}^\infty\subset\mathcal M$, 都有
+    \[\lim_{n\to\infty}{A_n}\in\mathcal M\]
+    则称$\mathcal M$是$X$的一个{\bf 单调类} (monotonic class).
+\end{definition}
+
+\newpage
+\section{测度论 I}
+
+自从小学开始学习几何以来, 我们似乎一直默许了一个概念: {\bf 面积}. 面积似乎无处不在, 人们对他司空见惯了,
+却仍然没有意识到一个严重的问题, 那就是{\bf 如何在数学里严格定义面积}?
+
+你或许会说: 这很简单啊, 比如说正方形的面积是$S=a^2$, 长方形是$S=ab$, 圆形是$S=\pi r^2$... 面积谁不会算啊, 你拿小学知识忽悠我呢?
+
+事实上, 但凡学数学的都能看出, 目前为止我们给面积下的定义都太狭隘了. 我们只需要随手构建一个
+看上去更神秘的集合, 凭我们之前的知识就束手无策了. 例如求全体有理数$\Q$在$\R$ (作为空间)中的长度.
+
+而本章的目标就是解决面积 (或体积)概念的问题, 并引出一个更加抽象, 泛用的概念: 测度.
+
+\subsection{$\sigma$-代数}
+
+就像在定义实函数之前我们严格定义了实数: 既然要定义测度, 我们就需要指明哪些集合是可测的.
+从我们一贯的几何直觉中, 不相交的集合的无交并的面积应该是双方面积的简单加和. 我们可以将这个概念推广到无限情况,
+也就是{\bf 可数可加性}. 至于为什么没有不可数可加性, 显然对不可数个数定义代数求和并没有意义.
+
+\begin{definition}[$\sigma$-代数]
+    对于一个集合$X$, 其子集族$\Sigma$若满足:
+    \begin{enumerate}
+        \item[A1] $\O\in\Sigma$.
+        \item[A2] $A\in\Sigma\implies X\setminus A\in\Sigma$.
+        \item[A3] 对于子族$\set{A_i}_{i\in I}\subset\Sigma$, 若指标集$I$至多可数, 则$\bigcup_{i\in I}{A_i}\in\Sigma$.
+    \end{enumerate}
+    那么就称$\Sigma$是$X$上的一个{\bf $\sigma$-代数} ($\sigma$-algebra). 
+    若要求条件A3中的$I$是有限集, 则也称$\Sigma$是一个{\bf 代数}.
+\end{definition}
+
+显然, 上述定义蕴含了以下结果:
+
+\begin{theorem}
+    设$\Sigma$是$X$上的$\sigma$-代数, 则:
+    \begin{enumerate}
+        \item[A4] $X\in\Sigma$.
+        \item[A5] 对于子族$\set{A_i}_{i\in I}\subset\Sigma$, 若指标集$I$可数, 则$\bigcap_{i\in I}{A_i}\in\Sigma$.
+    \end{enumerate}
+\end{theorem}
+
+上述两个定理是显然的, A4由A1和A2推出, A5可以由De Morgan定律 (对偶律)推出.
+事实上, 如果用A4和A5分别替换A1和A3, 给出的定义和原定义还是等价的.
+
+显然, 幂集$\wp(X)$也是$X$上的$\sigma$-代数, 我们容易证明它是$X$上最大的代数. 但我们更多情况下考虑的其实是最小的代数,
+具体来说, 是包含某些特定集合的最小代数. 我们发现代数之间也有一系列明确的包含关系:
+
+\begin{definition}[子$\sigma$-代数]
+    对于$X$上的$\sigma$-代数$\Sigma$, 若$\Sigma'\subset\Sigma$也是$X$的$\sigma$-代数, 则称为$\Sigma$的{\bf 子$\sigma$-代数} (sub $\sigma$-algebra). 
+\end{definition}
+
+由于任何子集族都是$\wp(X)$的子集, 所有$\sigma$-代数都是$\wp(X)$的子代数, 这就印证了刚刚说的, $\wp(X)$在集合族之间的序关系下, $\wp(X)$就是那个最大元.
+这给了我们构造最小代数的一种方法: 类似于群论中的生成子群,
+既然要找包含某些特定集合的最小代数, 只需找出所有包含这些集合的代数, 取其交集就是满足泛性质的下确界.
+不过在此之前, 我们需要先验证$\sigma$-代数的任意交还是$\sigma$-代数 (即确界一定存在).
+
+\begin{theorem}\label{thm:sigma代数的交}
+    设$\set{\Sigma_j}_{j\in J}$是一族$X$的$\sigma$-代数, 则
+    \[\Sigma_0:=\bigcap_{j\in J}{\Sigma_j}\]
+    也是$X$的$\sigma$-代数.
+\end{theorem}
+\begin{proof}
+    我们逐一验证定义中的公理:
+    \begin{enumerate}
+        \item[A1] 显然对每个$\Sigma_j$, 都有$\O\in\Sigma_j$, 因此$\O\in\Sigma_0$成立.
+        \item[A2] 对任意$S\in\Sigma_0$, 那么对每个$\Sigma_j$都有$S\in\Sigma_j$, 因此$X\setminus S\in\Sigma_j$, 从而$X\setminus S\in\Sigma_0$.
+        \item[A3] 对任意$S_1,S_2,\ldots\in\Sigma_0$, 对于每个$\Sigma_j$都有$S_1,S_2,\ldots\in\Sigma_j$, 从而
+        $\bigcup_{i=1}^\infty{S_i}\in\Sigma_j$, 从而也有$\bigcup_{i=1}^\infty{S_i}\in\Sigma_0$.
+    \end{enumerate}
+\end{proof}
+
+因此我们可以作下述定义:
+
+\begin{definition}[生成的$\sigma$-代数]
+    设$\mathcal M$是$X$的一个子集族. 令
+    \[\operatorname{coll}(\mathcal M):=\set{\Sigma\mid\Sigma\supset\mathcal M, \Sigma\text{为}\sigma\text{-代数}}\]
+    显然其非空, 令
+    \[\sigma(\mathcal M):=\bigcap_{\Sigma\in\operatorname{coll}(\mathcal M)}{\Sigma}\]
+    则由\ref{thm:sigma代数的交}, $\sigma(\mathcal M)$是一个$\sigma$-代数, 称之为{\bf $\mathcal M$生成的代数} (generated by $\mathcal M$).
+\end{definition}
+
+就像我们之前讨论的一样, $\sigma(\mathcal M)$就是包含$\mathcal M$最小的$\sigma$-代数. 我们还可以定义两个$\sigma$-代数的积构造,
+这也是为了积空间的内容作铺垫.
+
+\begin{definition}[积$\sigma$-代数]
+    设$\Sigma_1,\Sigma_2$分别是$X_1,X_2$的$\sigma$-代数. 则
+    \[\mathcal R:=\set{S_1\times S_2\mid S_1\in\Sigma_1,S_2\in\Sigma_2}\]
+    并记$\Sigma_1\otimes\Sigma_2=\sigma(\mathcal R)$, 它是$X_1\times X_2$上的$\sigma$-代数, 称为$\Sigma_1,\Sigma_2$
+    的{\bf 积$\sigma$-代数} (product). 有时为了区别它和Cartesian积, 也称之为两个$\sigma$-代数的张量积.
+\end{definition}
+
+上面的定义和积拓扑的定义也有异曲同工之妙. 两者的过程都类似于先构造出空间中的矩形, 再通过矩形生成完整的拓扑 ($\sigma$-代数).
+这是因为有些集合不一定能完全分解为两个集合的积, 如下图所示:
+
+\begin{figure}
+    \centering
+    \begin{tikzpicture}[domain=0:2,scale=1]
+        \draw[thick,->] (0,0) -- (2+0.1,0) node[right] {};
+        \draw[thick,->] (0,0) -- (0,2+0.1) node[above] {};
+        \filldraw[red] (0.5,0.5)--(1.5,0.5)--(1.5,1.5)--(0.5,1.5)--cycle;
+        \filldraw[red] (1,1)--(2,1)--(2,2)--(1,2)--cycle;
+    \end{tikzpicture}
+    \caption{一个不能直接分解为两个集合的积的集合}
+\end{figure}
+
+\begin{theorem}
+    如果$X$上的代数$\mathcal M$是一个单调类, 则$\mathcal M$是$\sigma$-代数.
+\end{theorem}
+\begin{proof}
+    设$\mathcal M$是代数, 则对任意有限并封闭. 对于其中任何一列集合$\set{A_n}_{n=1}^\infty$, 其并集
+    可取为极限
+    \[\lim_{n\to\infty}{\bigcup_{i=1}^n{A_n}}\]
+    显然这个列是单调的. 由单调类定义, 其极限也在$\mathcal M$中, 这就证明了$\mathcal M$是$\sigma$-代数.
+\end{proof}
+
+\subsection{可测空间}
+
+可测空间, 其实就是可以定义测度的空间. 需要注意的是, 这和测度空间是两个概念: 测度空间是配备了特定测度的空间.
+
+\begin{definition}[可测空间]
+    指定了$\sigma$-代数$\Sigma$的集合$X$, 称为一个{\bf 可测空间} (measurable space), 通常记作二元组$(X,\Sigma)$.
+    此时称$S\in\Sigma$是$X$的一个{\bf 可测集} (measurable set).
+\end{definition}
+
+可测空间的定义是非常简单的, 同样地我们也可以定义其积对象:
+
+\begin{definition}[积可测空间]
+    对于两个可测空间$(X,\mathcal A)$和$(Y,\mathcal B)$, 那么$\mathcal A\otimes\mathcal B$是
+    $X\times Y$上的$\sigma$-代数, 记
+    \[(X\times Y,\mathcal A\otimes\mathcal B)\]
+    为这两个可测空间的{\bf 积} (product), 通常简记作$X\times Y$.
+\end{definition}
+
+\subsection{可测映射}
+
+用范畴论的语言, 全体可测空间构成可测空间范畴$\mathsf{Meas}$, 这个范畴中的态射就是可测映射, 类似于拓扑学中的连续映射, 它的定义也非常相似:
+\begin{definition}[可测映射]
+    设$(X,\mathcal A)$, $(Y,\mathcal B)$是两个可测空间, 映射$f:X\to Y$若满足对任意$S\in\mathcal B$, 其原象都满足$f^{-1}(S)\in\mathcal A$,
+    则称$f$是$X$到$Y$的一个{\bf 可测映射} (measurable map). 一个可测空间$(X,\Sigma)$上的全体可测映射组成的集合记作$\L^0(X,\Sigma)$.
+\end{definition}
+
+就像拓扑学中的连续函数一样, 我们也有如下结论:
+
+\begin{theorem}
+    可测映射的复合仍然是可测映射.
+\end{theorem}
+\begin{proof}
+    设$f:X\to Y$, $g:Y\to Z$是复合映射, 则$g\circ f:X\to Z$满足, 对任意$Z$中的可测集$S$, $g^{-1}(S)$是$Y$中可测集,
+    从而$(g\circ f)^{-1}(S)$是$X$中可测集.
+\end{proof}
+
+\begin{theorem}
+    一个映射$f:X\to Y_1\times Y_2\times\cdots\times Y_n$可测, 当且仅当每一个分量函数$f_i=\pi_i\circ f$可测.
+    \[\large\begin{tikzcd}[row sep=huge]
+        X & {Y_i} \\
+        {\prod_jY_j}
+        \arrow["{\pi_i\circ f}", dashed, from=1-1, to=1-2]
+        \arrow["f"', from=1-1, to=2-1]
+        \arrow["{\pi_i}"', from=2-1, to=1-2]
+    \end{tikzcd}\]
+\end{theorem}
+\begin{proof}
+    由于$f$可测, 对任意$Y_1\times Y_2\times\cdots\times Y_n$的可测集$S$, $f^{-1}(S)$是$X$中的可测集. 由定义
+    \[\mathcal R=\set{S_1\times S_2\times\cdots\times S_n\mid S_1\in\Sigma_1,S_2\in\Sigma_2,\ldots,S_n\in\Sigma_n}\]
+    其中$\Sigma_1,\Sigma_2,\ldots,\Sigma_n$分别是$Y_1,Y_2,\ldots,Y_n$所配备的$\sigma$-代数.
+    从而任何$Y_1\times Y_2\times\cdots\times Y_n$中的可测集都可以表示为可数个$\mathcal R$中元素的并集,
+    而每个$\mathcal R$中元素在$Y_i$上投影的原像都是$Y_i$的可测集 (积的泛性质), 可测集的可数并依然可测, 从而每个分量函数是可测的.
+
+    另一方面, 若每个分量函数都可测, 那么证明是类似的. 对于$\mathcal R$中的每个元素, 其在$Y_i$上的原像都是可测集, 那么$f$自然可测.
+\end{proof}
+
+\subsection{$[0,\infty]$上的代数运算}
+
+在处理测度的时候, 我们难免会遇到$\infty$, 一个理由是我们希望赋予无限大的集以一个测度, 例如$\R$就有无限长.
+同样一个序列的极限或级数的和也很可能是$\infty$, 如果规避讨论$\infty$, 会导致很多麻烦.
+在测度论的语境中, 我们一般会做出一些特殊规定:
+
+\begin{enumerate}
+    \item[加法] 对于$0\le a\le\infty$, 我们总是规定$a+\infty=\infty+a=\infty$. 
+    \item[乘法] 对于$0<a\le\infty$, 我们定义$a\cdot\infty=\infty\cdot a=\infty$; 特别地, $0\cdot\infty=\infty\cdot0=0$. 
+\end{enumerate}
+
+这么定义可能会显得很奇怪, 因为它似乎和数学分析中的结论有出入, 尤其是$0\cdot\infty=0$, 在数学分析中我们知道这是一个不定式, 不可以视作定值
+\sout{凭什么$0\cdot\infty=0$啊! galgame里不是这样的!}, 然而容易验证, 这样定义的运算的交换律和结合律在$[0,\infty]$上都是自动成立的.
+
+
+
+\subsection{测度}
+
+现在一切铺垫都准备就绪, 我们给出一般情况下测度的定义:
+
+\begin{definition}[测度]
+    设$(X,\Sigma)$是可测空间, 若定义在其$\sigma$-代数上的集函数$\mu:\Sigma\to\R_{\ge0}\cup\set{\infty}$满足:
+    \begin{enumerate}
+        \item[M1] $\mu(\O)=0$.
+        \item[M2] (可数可加性) 设$\set{E_i}_{i\in I}\subset\Sigma$是两两不交的可测集族, 且指标集$I$至多可数, 则
+        \[\mu\left(\bigcup_{i\in I}{E_i}\right)=\sum_{i\in I}{\mu(E_i)}\]
+    \end{enumerate}
+    则称$\mu$为$(X,\Sigma)$上的一个{\bf (非负)测度} (measure). 指定了测度的可测空间$(X,\Sigma,\mu)$称为{\bf 测度空间} (measure space).
+\end{definition}
+\begin{remark}
+    显然$\mu(E_i)$一定是大于等于0的正数. 因此是正项级数, 重排并不会改变它的敛散性和极限.
+\end{remark}
+\begin{remark}
+    我们并没有要求测度一定是有限数, 测度可以取$\infty$. 这类集合也是容易构造的.
+\end{remark}
+
+\begin{theorem}[测度的保序性]
+    对于配备了测度$\mu$的可测空间$(X,\Sigma)$, 对于$A,B\in\Sigma$, 总有
+    \[A\subset B\implies\mu(A)\le\mu(B)\]
+\end{theorem}
+\begin{proof}
+    若$A\subset B$, 则$B\setminus A\in\Sigma$, 从而$\mu(B\setminus A)\ge 0$. 由可数可加性,
+    \[\mu(B)=\mu(A)+\mu(B\setminus A)\]
+    这就证明了定理.
+\end{proof}
+\begin{theorem}[测度的连续性]\label{thm:测度的连续性}
+    对于配备了测度$\mu$的可测空间$(X,\Sigma)$, 若可测集合列$\set{A_n}_{n=1}^\infty\subset\Sigma$单调上升或单调下降, 且$\mu(A_1)<\infty$, 则其极限可测并且
+    \[\lim_{n\to\infty}{\mu(A_n)}=\mu\left(\lim_{n\to\infty}{A_n}\right)\]
+\end{theorem}
+\begin{proof}
+    我们分别证明两种情况:
+    \begin{enumerate}
+        \item 假设$\set{A_n}_{n=1}^\infty$是单调上升的, 由\ref{thm:单调集合列的极限},
+        \[\lim_{n\to\infty}{A_n}=\bigcup_{n=1}^\infty{A_n}\]
+        我们作$B_1=A_1$, 对于$n>1$, $B_n=A_n\setminus A_{n-1}$. 显然
+        \[\bigcup_{n=1}^\infty{A_n}=\bigcup_{n=1}^\infty{B_n}\]
+        我们只是为$\set{A_n}_{n=1}^\infty$作了一次去重, 显然由可数可加性
+        \[\mu\left(\bigcup_{n=1}^\infty{B_n}\right)=\sum_{n=1}^\infty{\mu(B_n)}=\mu(A_1)+\sum_{n=2}^\infty{\mu(A_n\setminus A_{n-1})}=\mu(A_1)+\sum_{n=2}^\infty{\left(\mu(A_n)-\mu(A_{n-1})\right)}\]
+        等式右边的级数是一个望远镜级数, 其和为$\mu\left(\lim_{n\to\infty}{A_n}\right)-\mu(A_1)$, 于是
+        \[\mu\left(\bigcup_{n=1}^\infty{B_n}\right)=\mu\left(\lim_{n\to\infty}{A_n}\right)\]
+        这就证明了$\set{A_n}_{n=1}^\infty$单调上升的情况.
+        \item 假设$\set{A_n}_{n=1}^\infty$是单调下降的, 我们令$B_n$为差分, 对任意$n$, 定义
+        \[B_n=A_n\setminus A_{n+1}\]
+        容易证明
+        \[A_1\setminus\bigcap_{n=1}^\infty{A_n}=\bigcup_{n=1}^\infty{B_n}\]
+        显然$\set{B_n}_{n=1}^\infty$是两两不交的, 显然有
+        \[\mu\left(A_1\setminus\bigcap_{n=1}^\infty{A_n}\right)=\sum_{n=1}^\infty{\mu(B_n)}=\sum_{n=1}^\infty{\left(\mu(A_n)-\mu(A_{n+1})\right)}\]
+        由 (1)中类似的方法可以得到
+        \[\mu\left(\bigcap_{n=1}^\infty{A_n}\right)=\lim_{n\to\infty}{\mu(A_n)}\]
+        这就证明了$\set{A_n}_{n=1}^\infty$单调上升的情况.
+    \end{enumerate}
+\end{proof}
+
+\begin{theorem}[Fatou引理, 集合形式]
+    对于配备了测度$\mu$的可测空间$(X,\Sigma)$, 以及可测集合列$\set{A_n}_{n=1}^\infty\subset\Sigma$, 总有
+    \[\mu\left(\liminf_{n\to\infty}{A_n}\right)\le\liminf_{n\to\infty}{\mu(A_n)}\]
+    若存在可测集$A_0$使得$\mu(A_0)<\infty$且对任意$n$, $A_n\subset A_0$, 则有
+    \[\mu\left(\limsup_{n\to\infty}{A_n}\right)\ge\limsup_{n\to\infty}{\mu(A_n)}\]
+\end{theorem}
+
+\begin{proof}
+    考虑$\set{A_n}_{n=1}^\infty$的下极限, 显然有
+    \[\liminf_{n\to\infty}{A_n}=\bigcup_{n=1}^\infty{\bigcap_{k=n}^\infty{A_k}}\]
+    显然$\bigcap_{k=n}^\infty{A_k}$是随$n$单调上升的. 令
+    \[B_1=\bigcap_{k=1}^\infty{A_k},\quad B_n=\bigcap_{k=n}^\infty{A_k}\setminus\bigcap_{k=n-1}^\infty{A_k}\]
+    那么
+    \[\begin{aligned}
+        &\mu\left(\liminf_{n\to\infty}{A_n}\right)=\mu\left(\bigcup_{n=1}^\infty{B_n}\right)=\sum_{n=1}^\infty{\mu(B_n)}\\
+        =&\mu\left(\bigcap_{k=1}^\infty{A_k}\right)+\sum_{n=2}^\infty{\left(\mu\left(\bigcap_{k=n}^\infty{A_k}\right)-\mu\left(\bigcap_{k=n-1}^\infty{A_k}\right)\right)}\\
+        =&\lim_{n\to\infty}{\mu\left(\bigcap_{k=n}^\infty{A_k}\right)}\le\liminf_{n\to\infty}{\mu(A_n)}
+    \end{aligned}\]
+    
+    同样地, 考虑$\set{A_n}_{n=1}^\infty$的上极限, 显然有
+    \[\limsup_{n\to\infty}{A_n}=\bigcap_{n=1}^\infty{\bigcup_{k=n}^\infty{A_k}}\]
+    考虑
+    \[A_0\setminus\left(\limsup_{n\to\infty}{A_n}\right)\]
+    其中$A_0$是包含全体$A_n$的有限测度集. 由De Morgan律, 
+    \[A_0\setminus\left(\limsup_{n\to\infty}{A_n}\right)=A_0\setminus\bigcap_{n=1}^\infty{\bigcup_{k=n}^\infty{A_k}}
+    =\bigcup_{n=1}^\infty{\left(A_0\setminus\bigcup_{k=n}^\infty{A_k}\right)}
+    =\bigcup_{n=1}^\infty{\bigcap_{k=n}^\infty{(A_0\setminus A_k)}}=\liminf_{n\to\infty}{(A_0\setminus A_n)}\]
+    从而
+    \[\limsup_{n\to\infty}{A_n}=A_0\setminus\left(\liminf_{n\to\infty}{(A_0\setminus A_n)}\right)\]
+    于是
+    \[\mu\left(\limsup_{n\to\infty}{A_n}\right)=\mu(A_0)-\mu\left(\liminf_{n\to\infty}{(A_0\setminus A_n)}\right)\ge\mu(A_0)-\liminf_{n\to\infty}{(\mu(A_0)-\mu(A_n))}=\limsup_{n\to\infty}{\mu(A_n)}\]
+\end{proof}
+
+我们再引入一种有趣的测度:
+
+\begin{definition}[计数测度]
+    对于集合$X$, 我们在$\wp(X)$上定义测度$\mu_c$满足:
+    \begin{enumerate}
+        \item 若$A\subset X$是有限集, 则$\mu_c(A)=|A|$.
+        \item 若$A\subset X$是无限集, 则$\mu_c(A)=\infty$.
+    \end{enumerate}
+    容易验证这是一个测度, 称之为集合$X$上的{\bf 计数测度} (counting measure).
+\end{definition}
+
+\subsection{外测度}
+
+从本节开始我们开始尝试定义$\R$上的一般测度, 也就是Lebesgue测度, 也就是我们熟悉的长度.
+虽然我们已经有了测度的概念, 但是定义Lebesgue测度也不总是一件容易的事情. 外测度就是为了解决这类问题而存在的,
+我们先不考虑测度的性质, 而是从更宽松的条件入手:
+
+\begin{definition}[外测度]
+    设集合$X$的幂集$\wp(X)$上的集函数$\mu^*:\wp(X)\to\R_{\ge0}\cup\set{\infty}$若满足:
+    \begin{enumerate}
+        \item[OM1] $\mu^*(\O)=0$.
+        \item[OM2] (单调性) $A\subset B\implies \mu^*(A)\le\mu^*(B)$.
+        \item[OM3] (可数次可加性) 对于$X$的任意子集的至多可数族$\set{E_n}\subset\wp(X)$, 其并集的外测度不大于每个集合的外测度之和:
+        \[\mu^*\left(\bigcup_{n=1}^\infty{E_n}\right)\le\sum_{n=1}^\infty{\mu^*(E_n)}\]
+    \end{enumerate}
+    则称$\mu^*$是$X$上的一个{\bf 外测度} (outer measure).
+\end{definition}
+\begin{remark}
+    注意外测度定义域一定是全体子集.
+\end{remark}
+
+\subsection{Lebesgue外测度}
+
+我们可以尝试在实线$\R$上定义一个简单的外测度, 既然如此, 我们自然先从最简单的情况入手:
+显然对于$\R$上的一个{\bf 区间}, 例如$(0,1),(0,1],[0,1]$. 我们定义他们的长度 (外测度)就是
+它们端点之间的距离, 即
+\[\diam{(a,b)}=b-a\]
+这个记号源自度量空间中的{\bf 直径}.
+
+\begin{definition}[Lebesgue外测度]
+    我们定义$\R$的一个子集$S$的{\bf Lebesgue外测度}为使用可数个区间覆盖该子集的区间长度的下确界, 即
+    \[m^*(S):=\inf\set{\sum_{j\in J}{\diam{I_j}}\mid \bigcup_{j\in J}{I_j}\supset S}\]
+    其中每个$I_j$都是区间, 且指标集$J$为可数集.
+\end{definition}
+
+\begin{proposition}
+    $m^*:\wp(\R)\to\R_{\ge0}\cup\set{\infty}$是一个外测度. 
+\end{proposition}
+\begin{proof}
+    我们分别证明外测度的几条公理:
+    \begin{enumerate}
+        \item[OM1] 显然空集可以任意取一个长度趋近于$0$的一列区间, 证明$m^*(\O)=0$的过程是平凡的.
+        \item[OM2] 假若$A\subset B\subset\R$, 那么覆盖$B$的覆盖也一定覆盖$A$, 于是若$m^*(A)>m^*(B)$必构成矛盾.
+        \item[OM3] 显然当对每个$n$, $\set{I_{nj}}$覆盖$E_n$时, 
+        \[\bigcup_{n=1}^\infty{\bigcup_{j=1}^\infty{I_{nj}}}\]
+        也覆盖
+        \[\bigcup_{n=1}^\infty{E_n}\]
+        类似的可以证明
+        \[m^*\left(\bigcup_{n=1}^\infty{E_n}\right)>\sum_{n=1}^\infty{m^*(E_n)}\]
+        不可能成立.        
+    \end{enumerate}
+\end{proof}
+
+我们现在定义了一个看上去很像测度的东西, 但是{\bf 它并不满足可数可加性}, 对于这个事实有一个非常经典的反例的构造,
+我们会在之后介绍.
+
+\subsection{Carathéodory条件}
+
+我们现在知道: 有一些病态的集合使得外测度不满足可数可加性. 那么我们要做的事情也很简单: 只要把这些\sout{坏东西}不干净的集合去掉, 我们就能得到一个测度.
+
+但是, 如何判断一个集合是不是病态的? 德国数学家Constantin Carathéodory (1873--1950)给出了这个问题的答案, 他给出并证明了一个集合是病态的条件, 也就是Carathéodory条件:
+
+\begin{comm}[Carathéodory条件]
+    设$X$上有外测度$\mu^*$, 对于$E\subset X$, 若对任意$A\subset X$都有
+    \[\mu^*(A)=\mu^*(A\cap E)+\mu^*(A\setminus E)\]
+    即对任意集合$A$, 其测度等于其在$E$之内的部分与$E$之外的部分之和. 则称集合$E$满足{\bf Carathéodory条件}.
+    简称C-条件.
+\end{comm}
+
+Carathéodory也证明了这个条件的合理性, 即这个条件的的确确把所有病态集合都剔除了, 也就是重要的Carathéodory定理:
+
+\begin{theorem}[Carathéodory定理]\label{thm:Carathéodory定理}
+    设集合$X$以及集合$X$上的外测度$\mu^*$, 那么:
+    \begin{enumerate}
+        \item $X$上全体满足C-条件的集合构成一个$\sigma$-代数$\Sigma$.
+        \item 将外测度$\mu^*$限制在$\Sigma$上的限制映射$\mu^*|_\Sigma$是一个测度.
+    \end{enumerate}
+\end{theorem}
+\begin{proof}
+    先证明其满足$\sigma$-代数.
+    \begin{enumerate}
+        \item[A1] 显然对于$\O$, 对任意$A$都满足$A\cap\O=\O$, $A\setminus\O=A$, 从而$\O$满足C-条件, 这就证明了$\O\in\Sigma$.
+        \item[A2] 任取$E\in\Sigma$, 则$E$满足C-条件, 令$F=X\setminus E$, 则对任意$A\subset X$, 都有
+        \[A\cap F=A\setminus E,\quad A\setminus F=A\cap E\]
+        从而
+        \[\mu^*(A\cap F)+\mu^*(A\setminus F)=\mu^*(A\cap E)+\mu^*(A\setminus E)=\mu^*(A)\]
+        于是$X\setminus E\in\Sigma$.
+        \item[A3] 先证明二元情况. 设$A,B\in\Sigma$, 要证$A\cup B\in\Sigma$. 由于$A\in\Sigma$, 由C-条件, 对任给的$S\in X$, 有
+        \[\mu^*(S)=\mu^*(S\cap A)+\mu^*(S\setminus A)\tag{I}\]
+        由于$B$也满足C-条件, 代入$S'=S\setminus A$有
+        \[\mu^*(S')=\mu^*(S'\cap B)+\mu^*(S'\setminus B)\tag{II}\]
+        将 (II)代入 (I), 有
+        \[\mu^*(S)=\mu^*(S\cap A)+\mu^*(S\setminus A\cap B)+\mu^*(S\setminus A\setminus B)\tag{III}\]
+        我们调整一下上式的形式, 由于$S\setminus A\setminus B=S\setminus(A\cup B)$, 记$C=A\cup B$.
+        由于$S\cap C=S\cap(A\cup B)=(S\cap A)\cup(S\cap B)=(S\cap A)\cup(S\setminus A\cap B)$, 从而
+        \[\mu^*(S\cap C)=\mu^*((S\cap A)\cup(S\setminus A\cap B))\le\mu^*(S\cap A)+\mu^*(S\setminus A\cap B)\tag{IV}\]
+        将 (IV)代回 (III)就立即得到了
+        \[\mu^*(S)\ge\mu^*(S\cap C)+\mu^*(S\setminus C)\tag{V.I}\]
+        又由于$(S\cap C)\cup(S\setminus C)=S$, 由外测度的公理OM3可得
+        \[\mu^*(S)\le\mu^*(S\cap C)+\mu^*(S\setminus C)\tag{V.II}\]
+        结合 (V.I), (V.II)就证明了
+        \[\mu^*(S)=\mu^*(S\cap C)+\mu^*(S\setminus C)\]
+        从而$C=A\cup B\in\Sigma$, 由归纳法容易证明有限情况. 并且假若$A\cap B=\O$, 那么
+        \[\mu^*(A\cup B)=\mu^*(A\cup B\cap B)+\mu^*(A\cup B\setminus B)=\mu^*(B)+\mu^*(A)\]
+        这证明了$\mu^*|_\Sigma$是有限可加的. 下面证明可数情况, 设$\set{E_i}_{i=1}^\infty$是一列集合. 不失一般性, 
+        我们假设其是两两无交的. 若非如此, 可取$E'_n=E_n\setminus\bigcup_{i=1}^{n-1}{E_i}$, 且对于每个$i$都有$E_i\in\Sigma$. 令
+        \[E=\bigcup_{i=1}^\infty{E_i}\]
+        我们要证明$E\in\Sigma$. 不妨设对正整数$n$,
+        \[H_n=\bigcup_{i=1}^n{E_i}\]
+        我们已经证明了$H_n$满足C-条件, 对任意集合$S\subset X$都有
+        \[\mu^*(S)=\mu^*(S\cap H_n)+\mu^*(S\setminus H_n)\tag{VI}\]
+        由于$H_n\subset E$, 从而$X\setminus E\subset X\setminus H_n$, 由外测度单调性OM2得
+        \[\mu^*(S\setminus H_n)\ge\mu^*(S\setminus E)\]
+        代入 (VI)有
+        \[\mu^*(S)\ge\mu^*(S\cap H_n)+\mu^*(S\setminus E)\tag{VII}\]
+        注意到$S\cap H_n$是$S\cap E_1,S\cap E_2,\ldots,S\cap E_n$的无交并, 因此由已知结论 (有限可加)
+        \[\mu^*(S\cap H_n)=\sum_{i=1}^n{\mu^*(S\cap E_i)}\tag{VIII}\]
+        联立 (VII), (VIII)有
+        \[\mu^*(S)\ge\sum_{i=1}^n{\mu^*(S\cap E_i)}+\mu^*(S\setminus E)\]
+        令上式$n\to\infty$, 由实数列极限保序性有
+        \[\mu^*(S)\ge\sum_{i=1}^\infty{\mu^*(S\cap E_i)}+\mu^*(S\setminus E)
+        \ge\mu^*\left(\bigcup_{i=1}^\infty{S\cap E_i}\right)+\mu^*(S\setminus E)=\mu^*(S\cap E)+\mu^*(S\setminus E)\tag{IX}\]
+        同样地, 由于$(S\cap E)\cup(S\setminus E)=S$, 由外测度的公理
+        \[\mu^*(S)\le\mu^*(S\cap E)+\mu^*(S\setminus E)\tag{X}\]
+        联立 (IX), (X)有
+        \[\mu^*(S)=\mu^*(S\cap E)+\mu^*(S\setminus E)\]
+        这就证明了$E\in\Sigma$. 再对有限可加性取极限容易证明可数可加性. 于是我们证明了$\mu^*|_\Sigma$是一个测度.
+    \end{enumerate}
+\end{proof}
+
+借助Carathéodory定理定义的$\mu^*|_\Sigma$称为{\bf 外测度$\mu^*$诱导的测度}, Carathéodory定理指出, 每个外测度都能导出一个测度.
+
+\subsection{Lebesgue测度}
+
+\begin{definition}[Lebesgue测度]
+    令$\mathcal M$为$\R$中全体满足Carathéodory条件的子集构成的族, 令$m=m^*|_\mathcal{M}$是
+    Lebesgue外测度在$\mathcal M$上的限制, 由\ref{thm:Carathéodory定理}, $(\R,\mathcal M,m)$构成一个测度空间, 称测度$m$为
+    {\bf Lebesgue测度} (Lebesgue measure). 当我们提到$\R$时, 若没有明确指定, 默认使用该测度作为测度.
+\end{definition}
+
+至此, 我们完成了$\R$上长度的定义, 下面我们来分析它的一些性质:
+
+\begin{theorem}[平移不变性]
+    设$A$是Lebesgue可测集, 则对任意$k\in\R$, 有
+    \[m(A)=m(k+A)\]
+\end{theorem}
+\begin{proof}
+    易证区间平移后仍然是等长的区间, 且平移后的全体区间依然覆盖平移后的集合, 因此平移后的测度不会大于原本的测度, 即
+    \[m^*(E+k)\le m^*(E)\]
+    只需再次套用一遍上式,
+    \[m^*(E-k'+k')\le m^*(E-k')\implies m^*(E)\le m^*(E-k')\]
+    由于$k$是任意的, 只需任选$k'=-k$即可, 从而结论成立.
+\end{proof}
+
+\begin{example}[单点集]
+    求$m\set{0}$.
+\end{example}
+\begin{solution}
+    显然$(-1/n,1/n)$是一列包含$\set{0}$的区间列, 其单调下降且测度趋于$0$, 从而$\boxed{m\set{0}=0}$.
+\end{solution}
+
+\begin{example}[有理数集$\Q$]
+    求$m(\Q)$.
+\end{example}
+\begin{solution}
+    显然$\Q$可以写作无交并
+    \[\Q=\bigcup_{q\in\Q}{\set{q}}\]
+    由上例的结论以及平移不变性, 我们容易得出所有$m\set{q}=0$, 从而
+    \[\boxed{m(\Q)=\sum_{q\in\Q}{m\set{q}}=\sum_{q\in\Q}{0}=0}\]
+\end{solution}
+
+\begin{figure}[htbp]
+    \centering
+    \begin{tikzpicture}[scale=0.4]
+        \draw[line width=2pt] (-9,4)--(9,4) node[left,pos=0] {$A_0$};
+        \draw[line width=2pt] (-9,3)--(-3,3) node[left,pos=0] {$A_1$};
+        \draw[line width=2pt] (3,3)--(9,3);
+        \draw[line width=2pt] (-9,2)--(-7,2) node[left,pos=0] {$A_2$};
+        \draw[line width=2pt] (3,2)--(5,2);
+        \draw[line width=2pt] (-5,2)--(-3,2);
+        \draw[line width=2pt] (7,2)--(9,2);
+        \draw[line width=2pt] (-9,1)--(-8.33,1) node[left,pos=0] {$A_3$};
+        \draw[line width=2pt] (3,1)--(3.66,1);
+        \draw[line width=2pt] (-5,1)--(-4.33,1);
+        \draw[line width=2pt] (7,1)--(7.66,1);
+        \draw[line width=2pt] (-7.66,1)--(-7,1);
+        \draw[line width=2pt] (4.33,1)--(5,1);
+        \draw[line width=2pt] (-3.66,1)--(-3,1);
+        \draw[line width=2pt] (8.33,1)--(9,1);
+    \end{tikzpicture}
+    \caption{Cantor三分集}
+\end{figure}
+
+\begin{example}[Cantor三分集]
+    考虑一个如下构造的集合:
+    \begin{enumerate}
+        \item[0.] $A_0=[0,1]$.
+        \item[1.] $A_1=[0,1/3]\cup[2/3,1]$.
+        \item[2.] $A_1=[0,1/9]\cup[2/9,1/3]\cup[2/3,7/9]\cup[8/9,1]$.
+        \item[n.] 反复循环, 每次去掉每个区间的中间三分之一. 
+        \item[$\infty$.] 目标集合$C$.
+    \end{enumerate}
+    具体地, $A_n$定义为
+    \[A_n=A_{n-1}-\bigcup_{k=0}^\infty{\left(\frac{3k+1}{3^n},\frac{3k+2}{3^n}\right)}\]
+    取其交
+    \[C=\bigcap_{n=1}^\infty{A_n}\]
+    称之为{\bf Cantor三分集}. 求$m(C)$.
+\end{example}
+\begin{solution}
+    显然每个$A_n$都是$A_{n-1}$的子集, $\set{A_n}_{n=1}^\infty$是单调下降的. 并且对于每个$A_n$, 
+    \[m(A_n)=\left(\frac{2}{3}\right)^n\]
+    显然成立. 由\ref{thm:测度的连续性} (测度的连续性),
+    \[\boxed{m(C)=m\left(\lim_{n\to\infty}{A_n}\right)=\lim_{n\to\infty}{m(A_n)}=\lim_{n\to\infty}{\left(\frac{2}{3}\right)^n}=0}\]
+\end{solution}
+
+\subsection{Vitali集}
+
+我们将在本节指出, 并不是实数集的每个子集都是Lebesgue可测 (满足Carathéodory条件)的.
+
+我们先在$[0,1]$上定义一个等价关系$\sim$:
+\[x\sim y\iff x-y\in\Q\]
+这显然是等价关系, 因为
+\begin{enumerate}
+    \item $x-x=0\in\Q$.
+    \item $y-x=-(x-y)\in\Q$.
+    \item $x-y,y-z\in \Q\implies x-z=(x-y)+(y-z)\in\Q$.
+\end{enumerate}
+因此可以给出$[0,1]$的一个划分$[0,1] /\sim$, 其每个元素都是两两无交的等价类$[x]$, 即
+\[[x]=(x+\Q)\cap[0,1]\]
+并且每个等价类$[x]$非空. 下面, 我们要应用选择公理,
+从$[0,1]/\sim$中的每个等价类中选取一个代表元构成集合$\mathcal V$, 即
+\[\mathcal V=\set{p[x]\mid [x]\in[0,1] /\sim}\]
+其中$p$是选择函数, 由选择公理确保其存在性. 我们选取的集合$\mathcal V$就称为{\bf Vitali集}.
+
+显然, Vitali集是不可数的. 这是因为每个等价类$[x]$是可数的, 然而$[0,1]$不可数, 而$\mathcal V$与全体$[x]$等势.
+
+\begin{theorem}
+    Vitali集$\mathcal V$是不可测的.
+\end{theorem}
+\begin{proof}
+    我们令$\Q^\circ=\Q\cap[-1,1]$, 定义$\mathcal V$的一个平移:
+    \[\mathcal V_q=\mathcal V+q=\set{\,v+q\mid v\in\mathcal V\,},\quad q\in\Q^\circ\]
+    任取$p,q\in\Q^\circ$且$p\ne q$, 假设$\mathcal V_p\cap\mathcal V_q\ne\O$, 则存在$z$使得
+    \[z=v_1+p\quad\land\quad z=v_2+q\quad(v_1,v_2\in\mathcal V)\]
+    则$v_1-v_2=q-p\in\Q$. 从而$v_1\sim v_2$, 然而由$\mathcal V$的构造, 每个等价类中的元素唯一, 从而$v_1=v_2$, 这导致$p=q$, 与假设矛盾. 从而$\mathcal V_p,\mathcal V_q$无交, 由于$p,q$是任意的, 因此$\set{\mathcal V_q}_{q\in\Q^\circ}$是一个两两不交的可数集合族. 于是我们作它们的可数并
+    \[\mathcal V^\circ=\bigcup_{q\in\Q^\circ}{\mathcal V_q}\]
+    则:
+    \begin{enumerate}
+        \item $[0,1]\subset\mathcal V^\circ$, 这是因为$\mathcal V$对应的商集构成$[0,1]$的划分: 任给$x\in[0,1]$, 都可以表示为$v+q$, 其中$v\in\mathcal V, q\in\Q^\circ$.
+        \item $\mathcal V^\circ\subset[-1,2]$, 这是因为$\mathcal V\subset[0,1]$且$\Q^\circ\subset[-1,1]$.
+    \end{enumerate}
+    不妨设Vitali集可测, 由Lebesgue测度的平移不变性, 对任意$q\in\Q^\circ$, $\mathcal V_q$也是可测的, 且$m(\mathcal V_q)=m(\mathcal V)$. 并且由可数可加性以及$\mathcal V^\circ$的定义,
+    \[m(\mathcal V^\circ)=\sum_{q\in\Q^\circ}{m(\mathcal V_q)}\tag{I}\]
+    根据测度的单调性, 
+    \[1=m[0,1]\le m(\mathcal V^\circ)\le m[-1,2]=3\tag{II}\]
+    若$m(\mathcal V)=0$, 则
+    \[m(\mathcal V^\circ)=m\left(\bigcup_{q\in\Q^\circ}{\mathcal{V}_q}\right)=\sum_{q\in\Q^\circ}{m(\mathcal V_q)}=\sum_{q\in\Q^\circ}{m(\mathcal V)}=\sum_{q\in\Q^\circ}0=0\]
+    这是由绝对收敛级数重排得到的, 与 (II)中$m(\mathcal V^\circ)\ge 1$矛盾. 若$m(\mathcal V)>0$, 则
+    \[m(\mathcal V^\circ)=m\left(\bigcup_{q\in\Q^\circ}{\mathcal{V}_q}\right)=\sum_{q\in\Q^\circ}{m(\mathcal V_q)}=\sum_{q\in\Q^\circ}{m(\mathcal V)}=\infty\]
+    与 (II)中$m(\mathcal V^\circ)\le 3$矛盾. 从而假设不成立. $\mathcal V$是Lebesgue不可测的.
+\end{proof}
+
+\subsection{乘积测度}
+
+我们已经推广了$\R$上长度的概念, 现在我们可以很容易地定义$\R^d$上体积的概念.
+
+\begin{definition}[乘积测度]
+    设测度空间$(X,\mathcal{M},\mu)$和$(Y,\mathcal{N},\nu)$, 我们定义测度$\mu\times\nu:\mathcal{M}\otimes\mathcal{N}\to\R_{\ge 0}\cup\set{\infty}$, 满足
+    \[(\mu\times\nu)^*(A\times B)=\mu(A)\cdot\nu(B),\quad A\in\mathcal{M}, B\in\mathcal{N}\]
+    其中每个形如$A\times B$的集合称之为一个矩形. 我们可以仿照外测度的方式定义外测度
+    \[(\mu\times\nu)^*(U)=\inf\set{\sum_{j\in J}{(\mu\times\nu)^*(R_j)}\mid\bigcup_{j\in J}{R_j}\supset S}\]
+    其中每个$R_j$都是矩形且$J$是至多可数的, 容易证明这是一个外测度, 由Carathéodory定理, 可以确定唯一的测度$\mu\times\nu$,
+    称之为$\mu$和$\nu$的{\bf 积测度} (product measure).
+\end{definition}
+
+这样我们可以推广$\R^d$上的测度, 一般情况下, 我们选取$m^d=\overset{\#d}{\overbrace{m\times m\times\cdots\times m}}$作为$\R^d$的标准测度.
+
+\subsection{零测集}
+
+零测集就像加法中的0, 它本身也是一个非常有用的研究对象. 因为我们已经见识了测度为0的集合不一定是空集.
+
+\begin{definition}[零测集]
+    在测度空间$(X,\Sigma,\mu)$中, 若$N\in\Sigma$满足$\mu(N)=0$, 就称$N$是一个{\bf 零测集} (null set). 
+\end{definition}
+
+显然有以下定理:
+
+\begin{theorem}
+    零测集的可数并是零测集.
+\end{theorem}
+\begin{proof}
+    显然由测度的可数次可加性, 对于一族零测集$\set{N_i}_{i=1}^\infty$.
+    \[\mu\left(\bigcup_{i=1}^\infty{N_i}\right)\le\sum_{i=1}^\infty{\mu(E_i)}=0\]
+    由非负性立即得出其为零测集.
+\end{proof}
+
+\begin{definition}[几乎处处]
+    对于测度空间$(X,\Sigma,\mu)$以及一个关于$X$中的点$x\in X$的命题$P$,
+    我们称命题$P$在$X$上{\bf 几乎处处} (almost everywhere)成立, 当且仅当$X$去除某个零测集后该命题在任意点上成立. 常常简写作a.e.
+    
+    几乎处处是依赖测度的, 若有多个测度, 我们用记号 a.e. [$\mu$]来表示对测度$\mu$几乎处处成立.
+\end{definition}
+
+\subsection{特征函数}
+
+\begin{definition}[特征函数]
+    设$A\subset X$, $A$在$X$中的{\bf 特征函数} (characteristic function)是指函数$\chi_A:X\to\R$, 定义为
+    \[\chi_A(x)=\begin{cases}
+        1&x\in A\\
+        0&x\notin A
+    \end{cases}\]
+    这个定义容易推广到$\C$上. 故不多赘述.
+\end{definition}
+
+特征函数是最最简单的一类函数. 它的取值就类似于一个判断, 判断一个点是否在集合内.
+
+\begin{proposition}
+    显然, 对于至多可数集族$\set{A_n}_{n=1}^\infty$, 有
+    \[x\in\bigcap_{n=1}^\infty{A_n}\iff \prod_{n=1}^\infty{\chi_{A_n}(x)}=1\]
+\end{proposition}
+\begin{proof}
+    证明是显然的, 若前 (或后)成立, 都能推出$\chi_{A_n}(x)$恒为1, 再推出另一者.
+\end{proof}
+
+一般情况下, 在实分析语境中, 我们使用符号$\chi$就默认为特征函数.
+
+\subsection{简单函数}
+
+在定义一般函数的积分之前, 我们可以先从最简单的情况入手. 简单函数顾名思义就是形式最简单的函数: 它的取值只可能是有限个.
+
+\begin{definition}[简单函数]
+    若函数$s:X\to Y$的像$s(X)$是一个有限集, 则称$s$为一个{\bf 简单函数} (simple function).
+\end{definition}
+
+\begin{remark}
+    虽然简单函数只能取有限值, 但我们并不要求取相同值的区域必须连通. 相反, 它可以分散, 甚至可以非常分散, 只要其值域是有限集.
+\end{remark}
+
+在实分析的语境下, 我们经常要求其为可测简单函数, 也就是说, 对于每一个取值$\alpha$, 它对应的原像$s^{-1}(\alpha)$一定是一个可测集.
+
+\begin{theorem}[典范形式]
+    设$\set{\alpha_1,\alpha_2,\ldots,\alpha_n}$是可测简单函数$s:X\to\R$的全体取值, 则
+    \[s=\sum_{i=1}^n{\alpha_i\chi_{s^{-1}(\alpha_i)}}\]
+    称之为$s$的典范形式, 该定理容易推广到$\C$.
+\end{theorem}
+\begin{proof}
+    证明也是显然的, 对任意$x\in X$, 若$s(x)=\alpha_k$, 则$x\in s^{-1}(\alpha_k)$, 那么$\chi_{s^{-1}(\alpha_k)}(x)=1$,
+    并且对任意$\alpha_j\ne \alpha_k$, $\chi_{s^{-1}(\alpha_j)}(x)=0$, 从而
+    \[\sum_{i=1}^n{\alpha_i\chi_{s^{-1}(\alpha_i)}}(x)=\alpha_k\cdot 1=\alpha_k\]
+\end{proof}
+
+\newpage
+\section{空间与收敛}
+
+在介绍积分理论之前, 我们需要一些前置概念和结论. 在分析学中, 空间就是最重要的研究对象, 也是一切的基础.
+本章中就重点研究分析学中常见的空间.
+
+\subsection{线性空间}
+% \subsection{拓扑空间}
+% \subsection{连续映射}
+
+
+
+
+\end{document}
