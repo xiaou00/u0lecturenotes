@@ -1030,7 +1030,77 @@ Carathéodory也证明了这个条件的合理性, 即这个条件的的确确�
     就称$(V,+,\cdot,\mathbb K)$是一个{\bf 线性空间} (vector space).
 \end{definition}
 
-% \subsection{拓扑空间}
-% \subsection{连续映射}
+线性空间的研究是线性代数的主题, 在此我们只给出一些简单定义:
+
+\begin{definition}[线性算子]
+    设$V,W$是线性空间, 映射$f:V\to W$若对任意$v\in V,w\in W$都满足
+    \[f(k\cdot v+l\cdot w)=k\cdot f(v)+l\cdot f(w)\]
+    则称$f$为一个{\bf 线性算子} (linear operator).
+\end{definition}
+
+一般地说, 我们把一个空间映射到另一个空间的操作就称为一个{\bf 算子} (operator). 线性算子在有限维空间$\R^n\to\R^m$中对应$P^{n\times m}$的矩阵.
+
+\begin{definition}[线性同构]
+    若线性算子$f$是双射, 则称$f$为一个{\bf 线性同构} (isomorphism), 称存在线性同构$f:V\to W$的空间$V,W$是{\bf 同构} (isomorphic)的.
+\end{definition}
+
+\subsection{拓扑空间}
+
+拓扑空间是拓扑学的研究对象. 实分析需要非常深厚的拓扑学功底, 因此在学习实分析前最好先学习点集拓扑学,
+这里给出一些非常基本的拓扑学定义:
+
+\begin{definition}[拓扑空间]
+    设集合$X$和$X$的子集族$\mathcal T$. 若$\mathcal T$满足:
+    \begin{enumerate}
+        \item[Tp1] $\O\in\mathcal T$, $X\in\mathcal T$.
+        \item[Tp2] (任意并封闭) 任给一族$\set{U_\alpha}_{\alpha\in J}\subset\mathcal T$, 都有
+        \[\bigcup_{\alpha\in J}{U_\alpha}\in\mathcal T\]
+        \item[Tp3] (有限交封闭) 任给有限个$U_1,\ldots,U_n\in\mathcal T$, 都有
+        \[\bigcap_{i=1}^n{U_i}\in\mathcal T\] 
+    \end{enumerate}
+    则称$\mathcal T$是$X$的一个{\bf 拓扑} (topology), 指定了拓扑的集合$(X,\mathcal T)$称为一个
+    {\bf 拓扑空间} (topological space).
+\end{definition}
+
+本质上说, 拓扑空间研究的就是那些邻域, 并用集合去刻画点与点之间的相邻关系. 拓扑学中,
+我们注重研究两类最重要的集合:
+
+\begin{definition}[开集]
+    拓扑空间$(X,\mathcal T)$中, $\mathcal T$中的集合称为一个{\bf 开集} (open set).
+\end{definition}
+
+它的对偶概念:
+
+\begin{definition}[闭集]
+    拓扑空间$(X,\mathcal T)$中, 若$X\setminus C$是一个开集, 则称$C$是一个{\bf 闭集} (closed set).
+\end{definition}
+
+显然有以下定理:
+
+\begin{theorem}
+    设$X$是拓扑空间, 则:
+    \begin{enumerate}
+        \item[Tp4] $\O$是闭集, $X$也是闭集.
+        \item[Tp5] 有限个闭集的并也是闭集.
+        \item[Tp6] 闭集的任意交也是闭集.
+    \end{enumerate}
+\end{theorem}
+
+
+%\subsection{连续映射}
+%\subsection{Hausdorff空间}
+%\subsection{度量空间}
+%\subsection{网和收敛}
+%\subsection{完备性}
+%\subsection{一致收敛}
+%\subsection{点态收敛}
+%\subsection{紧致收敛}
+%\subsection{拓扑线性空间}
+%\subsection{凸性}
+%\subsection{赋范空间}
+%\subsection{Fréchet微分}
+%\subsection{Banach空间}
+%\subsection{内积空间}
+%\subsection{Hilbert空间}
 
 \end{document}
