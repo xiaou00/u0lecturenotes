@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2025) (preloaded format=xelatex 2025.5.23)  10 DEC 2025 20:28
+This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2025) (preloaded format=xelatex 2025.5.23)  11 DEC 2025 01:09
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1112,7 +1112,7 @@ File: resources/琪露诺.png Graphic file (type bmp)
 
 [16]
 
-Package tcolorbox Warning: Using nobreak failed. Try to enlarge `lines before break' or set page breaks manually on input line 794.
+Package tcolorbox Warning: Using nobreak failed. Try to enlarge `lines before break' or set page breaks manually on input line 800.
 
 File: resources/琪露诺.png Graphic file (type bmp)
 <resources/琪露诺.png>
@@ -1178,21 +1178,37 @@ File: resources/琪露诺.png Graphic file (type bmp)
 <resources/琪露诺.png>
 
 
-[24] (./RealAnalysis.aux)
+[24]
+File: resources/琪露诺.png Graphic file (type bmp)
+<resources/琪露诺.png>
+File: resources/琪露诺.png Graphic file (type bmp)
+<resources/琪露诺.png>
+File: resources/琪露诺.png Graphic file (type bmp)
+<resources/琪露诺.png>
+
+
+[25]
+File: resources/琪露诺.png Graphic file (type bmp)
+<resources/琪露诺.png>
+File: resources/琪露诺.png Graphic file (type bmp)
+<resources/琪露诺.png>
+
+
+[26] (./RealAnalysis.aux)
  ***********
 LaTeX2e <2024-11-01> patch level 2
 L3 programming layer <2022/08/05>
  ***********
 Package rerunfilecheck Info: File `RealAnalysis.out' has not changed.
-(rerunfilecheck)             Checksum: 1440251D06EAEA8DD33736FDF0F3226B;2033.
+(rerunfilecheck)             Checksum: 57935E74468F340570AAF16154510AC8;2123.
  ) 
 Here is how much of TeX's memory you used:
- 44422 strings out of 470231
- 1112071 string characters out of 5487678
- 1640460 words of memory out of 5000000
- 70352 multiletter control sequences out of 15000+600000
+ 44427 strings out of 470231
+ 1112151 string characters out of 5487678
+ 1640584 words of memory out of 5000000
+ 70357 multiletter control sequences out of 15000+600000
  637734 words of font info for 121 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
- 103i,15n,111p,721b,1338s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 103i,15n,111p,721b,1340s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on RealAnalysis.pdf (24 pages).
+Output written on RealAnalysis.pdf (26 pages).

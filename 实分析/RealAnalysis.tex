@@ -138,47 +138,47 @@
 \renewcommand{\thetheorem}{{定理 }\thesection.\arabic{theorem}}
 \newenvironment{theorem}[1][]{
     \refstepcounter{theorem}
-    \begin{cirno}[\bf \thetheorem. #1]
+    \begin{dashcirno}[\bf \thetheorem. #1]
     
 }{
-    \end{cirno}
+    \end{dashcirno}
 }
 %=====引理=====
 \newcommand{\thelemma}{{引理 }\thesection.\arabic{theorem}}
 \newenvironment{lemma}[1][]{
     \refstepcounter{theorem}
-    \begin{cirno}[\bf \thelemma. #1]
+    \begin{dashcirno}[\bf \thelemma. #1]
     
 }{
-    \end{cirno}
+    \end{dashcirno}
 }
 %=====推论=====
 \newcommand{\thecorollary}{{推论 }\thesection.\arabic{theorem}}
 \newenvironment{corollary}[1][]{
     \refstepcounter{theorem}
-    \begin{cirno}[\bf \thecorollary. #1]
+    \begin{dashcirno}[\bf \thecorollary. #1]
     
 }{
-    \end{cirno}
+    \end{dashcirno}
 }
 %=====命题=====
 \newcommand{\theproposition}{{命题 }\thesection.\arabic{theorem}}
 \newenvironment{proposition}[1][]{
     \refstepcounter{theorem}
-    \begin{cirno}[\bf \theproposition. #1]
+    \begin{dashcirno}[\bf \theproposition. #1]
     
 }{
-    \end{cirno}
+    \end{dashcirno}
 }
 
 \newcounter{definition}[section]%=====定义=====
 \renewcommand{\thedefinition}{{定义 }\thesection.\arabic{definition}}
 \newenvironment{definition}[1][]{
     \refstepcounter{definition}
-    \begin{dashcirno}[\bf \thedefinition. #1]
+    \begin{cirno}[\bf \thedefinition. #1]
     
 }{
-    \end{dashcirno}
+    \end{cirno}
 }
 \newcounter{example}[section]%=====例题=====
 \renewcommand{\theexample}{{例 }\thesection.\arabic{example}}
@@ -236,6 +236,12 @@
     该材料仅供交流学习, {\bf 仅供交流学习!} 贩卖兜售的话xiaou0会哭的TAT
 
     我个人的数学写作风格可能尚为稚嫩. 如果你正在学习数学, 希望这份材料能够帮助到你!
+\end{center}
+\hspace{5cm}
+\begin{center}
+    {\bf 讨论群}
+
+    讨论群号 (QQ): 244425765
 \end{center}
 \newpage
 
@@ -1091,9 +1097,70 @@ Carathéodory也证明了这个条件的合理性, 即这个条件的的确确�
     \end{enumerate}
 \end{theorem}
 
+\begin{proof}
+    我们逐一证明每个结论:
+    \begin{enumerate}
+        \item[Tp4] 显然$X\setminus X=\O$, $X\setminus\O=X$. 
+        \item[Tp5] 设$C_1,\ldots,C_n$是有限个闭集, 则$X\setminus C_1,\ldots,X\setminus C_n$是有限个开集,
+        由De Morgan律,
+        \[\bigcup_{i=1}^n{C_i}=X\setminus\bigcap_{i=1}^n{X\setminus C_i}\]
+        \item[Tp6] 同样地, 由De Morgan律
+        \[\bigcap_{\alpha\in J}{C_\alpha}=X\setminus\bigcup_{\alpha\in J}{X\setminus C_\alpha}\] 
+    \end{enumerate}
+\end{proof}
 
-%\subsection{连续映射}
+事实上, 用Tp4, Tp5, Tp6替换Tp1, Tp2, Tp3可以得到一个完全对偶的拓扑空间, 但一般我们采用开集定义.
+
+\begin{definition}[邻域]
+    拓扑空间$X$中, 包含点$x$的一个开集$U$称为$x$的一个{\bf 邻域} (neighborhood).
+\end{definition}
+
+内部和闭包也是常见的两种集合的运算:
+
+\begin{definition}[内部和闭包]
+    设$X$是拓扑空间, $A\subset X$是子集, $A$的{\bf 内部} (interior)是包含于$A$的全体开集的并 (上确界),
+    即被$A$包含的最大开集, 即
+    \[\dot{A}:=\sup\set{\text{开集} O\mid O\subset A}\]
+    $A$的{\bf 闭包} (closure)是包含$A$的
+    全体闭集的交 (下确界), 即包含$A$的最小闭集, 即
+    \[\overline{A}:=\inf\set{\text{闭集} K\mid K\supset A}\]
+\end{definition}
+
+更多内容可以参考关于点集拓扑学的教材, 个人比较推荐James.R.Munkres的Topology. (等我有空了再写一本点集拓扑)
+
+\subsection{连续映射}
+
+数学分析中, 我们已经初步定义了$\R^m\to\R^n$中的连续性, 这个概念可以进行推广: 事实上,
+所谓连续就是保持点相邻关系的映射, 在拓扑的语言里刻画如下:
+
+\begin{definition}[连续映射]
+    设$X,Y$是拓扑空间, 若映射$f:X\to Y$满足对任意开集$U\subset Y$, 其原像
+    $f^{-1}(U)\subset X$是$X$中的开集, 那么称$f$是{\bf 连续的} (continuous).
+\end{definition}
+
+例如在$\R\to\R$的情况下, $\R$上的拓扑是由全体开区间生成的, 那么连续性就是说对任意 (小)的开集$U$ (例如 $(x_0-\epsilon,x_0+\epsilon)$),
+映射到这个集合的所有点在$\R$中也是开集. 不过我们更熟悉的定义应该是:
+
+\begin{definition}[在一点处连续]
+    设$X,Y$是拓扑空间, $f:X\to Y$是映射, $x\in X$, 若对任意$f(x)\in Y$的邻域$V\ni f(x)$,
+    都有$x$的邻域$x\in U\subset X$, 使得$f(U)\subset f(V)$, 那么就称$f${\bf 在点$x$处连续} (continuos at $x$).
+\end{definition}
+
+这个定义套用到$\R\to\R$上, 就是我们熟悉的连续性的定义.
+
+\begin{theorem}
+    设$X,Y$是拓扑空间, $f:X\to Y$是映射, 那么下列命题等价:
+    \begin{enumerate}
+        \item $f$连续.
+        \item 对任意$X$的子集$A$, 都有$f(\overline{A})\subset\overline{f(A)}$.
+        \item 对任意$Y$中闭集$K$, 都有$f^{-1}(K)$是$X$中闭集.
+        \item $f$在$X$的每一点处连续.
+    \end{enumerate}
+\end{theorem}
+
+
 %\subsection{Hausdorff空间}
+%\subsection{紧致性}
 %\subsection{度量空间}
 %\subsection{网和收敛}
 %\subsection{完备性}
@@ -1103,8 +1170,8 @@ Carathéodory也证明了这个条件的合理性, 即这个条件的的确确�
 %\subsection{拓扑线性空间}
 %\subsection{凸性}
 %\subsection{赋范空间}
-%\subsection{Fréchet微分}
 %\subsection{Banach空间}
+%\subsection{Fréchet微分}
 %\subsection{内积空间}
 %\subsection{Hilbert空间}
 
