@@ -15,6 +15,7 @@
 \usepackage[hidelinks]{hyperref}
 \usepackage{xcolor}
 \usepackage{ulem}
+\usepackage{titlesec}
 \usepackage[a4paper, left=2.5cm, right=2.5cm, top=2.5cm, bottom=2cm]{geometry}
 \setlength{\droptitle}{-3cm}
 \pgfplotsset{compat=1.18}
@@ -34,12 +35,26 @@
 
 \newtheorem{remark}{注.}
 
+%标题样式
+
+\titleformat{\section}
+{\huge\bfseries\color{gray!25!cyan}}
+{\thesection}
+{1em}
+{}
+
+\titleformat{\subsection}
+{\large\bfseries\color{gray!25!cyan}}
+{\thesubsection}
+{0.5em}
+{}
+
 \newenvironment{comm}[1][]{
     \begin{tcolorbox}[
         enhanced,
         breakable,
-        colframe=black,
-        coltitle=black,
+        colframe=gray,
+        coltitle=gray,
         colback=white,
         colbacktitle=white,
         boxrule=1pt,
@@ -55,8 +70,8 @@
     \begin{tcolorbox}[
         enhanced,
         breakable,
-        colframe=cyan,
-        coltitle=cyan,
+        colframe=cyan!75!gray,
+        coltitle=cyan!75!gray,
         colback=white,
         colbacktitle=white,
         boxrule=1pt,
@@ -73,12 +88,13 @@
     \end{tcolorbox}
 }
 
-\newenvironment{reimu}[1][]{
+\newenvironment{dashcirno}[1][]{
     \begin{tcolorbox}[
         enhanced,
         breakable,
-        colframe=red,
-        coltitle=red,
+        colframe=white,
+        borderline={0.5mm}{0mm}{cyan!75!gray,dashed},
+        coltitle=cyan!75!gray,
         colback=white,
         colbacktitle=white,
         boxrule=1pt,
@@ -86,7 +102,7 @@
         title={\bf #1},
         overlay unbroken and last={
             \node[anchor=north east, xshift=0, yshift=0] at (frame.north east) {
-                \includegraphics[width=1.2cm]{resources/博丽灵梦.png}
+                \includegraphics[width=1.2cm]{resources/琪露诺.png}
             };
         },
     ]
@@ -95,13 +111,13 @@
     \end{tcolorbox}
 }
 
-\newenvironment{marisa}[1][]{
+\newenvironment{dotcirno}[1][]{
     \begin{tcolorbox}[
         enhanced,
         breakable,
         colframe=white,
-        borderline={0.5mm}{0mm}{yellow!50!orange,dashed},
-        coltitle=yellow!50!orange,
+        borderline={0.5mm}{0mm}{cyan!75!gray,dotted},
+        coltitle=cyan!75!gray,
         colback=white,
         colbacktitle=white,
         boxrule=1pt,
@@ -109,7 +125,7 @@
         title={\bf #1},
         overlay unbroken and last={
             \node[anchor=north east, xshift=0, yshift=0] at (frame.north east) {
-                \includegraphics[width=1.2cm]{resources/雾雨魔理沙.png}
+                \includegraphics[width=1.2cm]{resources/琪露诺.png}
             };
         },
     ]
@@ -159,19 +175,19 @@
 \renewcommand{\thedefinition}{{定义 }\thesection.\arabic{definition}}
 \newenvironment{definition}[1][]{
     \refstepcounter{definition}
-    \begin{reimu}[\bf \thedefinition. #1]
+    \begin{dashcirno}[\bf \thedefinition. #1]
     
 }{
-    \end{reimu}
+    \end{dashcirno}
 }
 \newcounter{example}[section]%=====例题=====
 \renewcommand{\theexample}{{例 }\thesection.\arabic{example}}
 \newenvironment{example}[1][]{
     \refstepcounter{example}
-    \begin{marisa}[\bf \theexample. #1]
+    \begin{dotcirno}[\bf \theexample. #1]
     
 }{
-    \end{marisa}
+    \end{dotcirno}
 }
 
 \newenvironment{solution}{
@@ -453,18 +469,7 @@
 \end{definition}
 
 上面的定义和积拓扑的定义也有异曲同工之妙. 两者的过程都类似于先构造出空间中的矩形, 再通过矩形生成完整的拓扑 ($\sigma$-代数).
-这是因为有些集合不一定能完全分解为两个集合的积, 如下图所示:
-
-\begin{figure}
-    \centering
-    \begin{tikzpicture}[domain=0:2,scale=1]
-        \draw[thick,->] (0,0) -- (2+0.1,0) node[right] {};
-        \draw[thick,->] (0,0) -- (0,2+0.1) node[above] {};
-        \filldraw[red] (0.5,0.5)--(1.5,0.5)--(1.5,1.5)--(0.5,1.5)--cycle;
-        \filldraw[red] (1,1)--(2,1)--(2,2)--(1,2)--cycle;
-    \end{tikzpicture}
-    \caption{一个不能直接分解为两个集合的积的集合}
-\end{figure}
+这是因为有些集合不一定能完全分解为两个集合的积.
 
 \begin{theorem}
     如果$X$上的代数$\mathcal M$是一个单调类, 则$\mathcal M$是$\sigma$-代数.
